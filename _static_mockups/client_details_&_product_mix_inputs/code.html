@@ -69,12 +69,54 @@
           </div>
         </div>
         <h3 class="text-[#0d171b] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Product Mix Influencers</h3>
-        <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
+        <div class="flex max-w-[480px] flex-col gap-4 px-4 py-3">
           <label class="flex flex-col min-w-40 flex-1">
-            <textarea
-              placeholder="Enter factors influencing product mix recommendations"
-              class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#0d171b] focus:outline-0 focus:ring-0 border border-[#cfdfe7] bg-slate-50 focus:border-[#cfdfe7] min-h-36 placeholder:text-[#4c809a] p-[15px] text-base font-normal leading-normal"
-            ></textarea>
+            <p class="text-[#0d171b] text-base font-medium leading-normal pb-2">Seasonality</p>
+            <select id="seasonality" class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#0d171b] focus:outline-0 focus:ring-0 border border-[#cfdfe7] bg-slate-50 focus:border-[#cfdfe7] h-14 bg-[image:--select-button-svg] placeholder:text-[#4c809a] p-[15px] text-base font-normal leading-normal">
+              <option>Select Seasonality</option>
+              <option>High Season</option>
+              <option>Low Season</option>
+              <option>Holiday Peak</option>
+            </select>
+          </label>
+          <label class="flex flex-col min-w-40 flex-1">
+            <p class="text-[#0d171b] text-base font-medium leading-normal pb-2">Geographic Location</p>
+            <select id="location" class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#0d171b] focus:outline-0 focus:ring-0 border border-[#cfdfe7] bg-slate-50 focus:border-[#cfdfe7] h-14 bg-[image:--select-button-svg] placeholder:text-[#4c809a] p-[15px] text-base font-normal leading-normal">
+              <option>Select Location</option>
+              <option>Madrid</option>
+              <option>Barcelona</option>
+              <option>Coastal Area</option>
+            </select>
+          </label>
+          <label class="flex flex-col min-w-40 flex-1">
+            <p class="text-[#0d171b] text-base font-medium leading-normal pb-2">Staff-to-Room Ratio</p>
+            <input id="staff-ratio" type="number" placeholder="Enter ratio" class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#0d171b] focus:outline-0 focus:ring-0 border border-[#cfdfe7] bg-slate-50 focus:border-[#cfdfe7] h-14 placeholder:text-[#4c809a] p-[15px] text-base font-normal leading-normal" />
+          </label>
+          <label class="flex flex-col min-w-40 flex-1">
+            <p class="text-[#0d171b] text-base font-medium leading-normal pb-2">Staff Experience</p>
+            <select id="staff-experience" class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#0d171b] focus:outline-0 focus:ring-0 border border-[#cfdfe7] bg-slate-50 focus:border-[#cfdfe7] h-14 bg-[image:--select-button-svg] placeholder:text-[#4c809a] p-[15px] text-base font-normal leading-normal">
+              <option>Select Experience Level</option>
+              <option>Beginner</option>
+              <option>Intermediate</option>
+              <option>Expert</option>
+            </select>
+          </label>
+          <label class="flex flex-col min-w-40 flex-1">
+            <p class="text-[#0d171b] text-base font-medium leading-normal pb-2">Client Sophistication</p>
+            <select id="client-sophistication" class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#0d171b] focus:outline-0 focus:ring-0 border border-[#cfdfe7] bg-slate-50 focus:border-[#cfdfe7] h-14 bg-[image:--select-button-svg] placeholder:text-[#4c809a] p-[15px] text-base font-normal leading-normal">
+              <option>Select Sophistication</option>
+              <option>New to Premium</option>
+              <option>Experienced Buyer</option>
+            </select>
+          </label>
+          <label class="flex flex-col min-w-40 flex-1">
+            <p class="text-[#0d171b] text-base font-medium leading-normal pb-2">Local Competition</p>
+            <select id="local-competition" class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#0d171b] focus:outline-0 focus:ring-0 border border-[#cfdfe7] bg-slate-50 focus:border-[#cfdfe7] h-14 bg-[image:--select-button-svg] placeholder:text-[#4c809a] p-[15px] text-base font-normal leading-normal">
+              <option>Select Competition Level</option>
+              <option>Low</option>
+              <option>Medium</option>
+              <option>High</option>
+            </select>
           </label>
         </div>
         <h3 class="text-[#0d171b] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Past Recommendations</h3>
@@ -112,50 +154,47 @@
         <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
           <label class="flex flex-col min-w-40 flex-1">
             <p class="text-[#0d171b] text-base font-medium leading-normal pb-2">Business Type</p>
-            <select
-              class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#0d171b] focus:outline-0 focus:ring-0 border border-[#cfdfe7] bg-slate-50 focus:border-[#cfdfe7] h-14 bg-[image:--select-button-svg] placeholder:text-[#4c809a] p-[15px] text-base font-normal leading-normal"
-            >
-              <option value="one"></option>
-              <option value="two">two</option>
-              <option value="three">three</option>
+            <select id="business-type" class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#0d171b] focus:outline-0 focus:ring-0 border border-[#cfdfe7] bg-slate-50 focus:border-[#cfdfe7] h-14 bg-[image:--select-button-svg] placeholder:text-[#4c809a] p-[15px] text-base font-normal leading-normal">
+              <option>Select Business Type</option>
+              <option>Hotel</option>
+              <option>Spa</option>
+              <option>Aesthetic Clinic</option>
+              <option>Dermatological Clinic</option>
+              <option>Plastic Surgery Clinic</option>
             </select>
           </label>
         </div>
         <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
           <label class="flex flex-col min-w-40 flex-1">
             <p class="text-[#0d171b] text-base font-medium leading-normal pb-2">Number of treatment rooms</p>
-            <input
-              class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#0d171b] focus:outline-0 focus:ring-0 border border-[#cfdfe7] bg-slate-50 focus:border-[#cfdfe7] h-14 placeholder:text-[#4c809a] p-[15px] text-base font-normal leading-normal"
-              value=""
-            />
+            <input id="treatment-rooms" type="number" class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#0d171b] focus:outline-0 focus:ring-0 border border-[#cfdfe7] bg-slate-50 focus:border-[#cfdfe7] h-14 placeholder:text-[#4c809a] p-[15px] text-base font-normal leading-normal" value="" />
           </label>
         </div>
         <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
           <label class="flex flex-col min-w-40 flex-1">
             <p class="text-[#0d171b] text-base font-medium leading-normal pb-2">Monthly treatments</p>
-            <input
-              class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#0d171b] focus:outline-0 focus:ring-0 border border-[#cfdfe7] bg-slate-50 focus:border-[#cfdfe7] h-14 placeholder:text-[#4c809a] p-[15px] text-base font-normal leading-normal"
-              value=""
-            />
+            <input id="monthly-treatments" type="number" class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#0d171b] focus:outline-0 focus:ring-0 border border-[#cfdfe7] bg-slate-50 focus:border-[#cfdfe7] h-14 placeholder:text-[#4c809a] p-[15px] text-base font-normal leading-normal" value="" />
           </label>
         </div>
         <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
           <label class="flex flex-col min-w-40 flex-1">
             <p class="text-[#0d171b] text-base font-medium leading-normal pb-2">Discount</p>
-            <input
-              class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#0d171b] focus:outline-0 focus:ring-0 border border-[#cfdfe7] bg-slate-50 focus:border-[#cfdfe7] h-14 placeholder:text-[#4c809a] p-[15px] text-base font-normal leading-normal"
-              value=""
-            />
+            <input id="discount" type="number" class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#0d171b] focus:outline-0 focus:ring-0 border border-[#cfdfe7] bg-slate-50 focus:border-[#cfdfe7] h-14 placeholder:text-[#4c809a] p-[15px] text-base font-normal leading-normal" value="" />
           </label>
         </div>
         <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
           <label class="flex flex-col min-w-40 flex-1">
             <p class="text-[#0d171b] text-base font-medium leading-normal pb-2">Percentage of treatments</p>
-            <input
-              class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#0d171b] focus:outline-0 focus:ring-0 border border-[#cfdfe7] bg-slate-50 focus:border-[#cfdfe7] h-14 placeholder:text-[#4c809a] p-[15px] text-base font-normal leading-normal"
-              value=""
-            />
+            <input id="percentage-treatments" type="number" class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#0d171b] focus:outline-0 focus:ring-0 border border-[#cfdfe7] bg-slate-50 focus:border-[#cfdfe7] h-14 placeholder:text-[#4c809a] p-[15px] text-base font-normal leading-normal" value="" />
           </label>
+        </div>
+        <div class="flex justify-center px-4 py-3">
+          <button id="calculate-button" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-12 px-5 bg-[#1193d4] text-slate-50 text-base font-bold leading-normal tracking-[0.015em] grow">
+            <span class="truncate">Calculate Mix</span>
+          </button>
+        </div>
+        <div id="results-container" class="px-4 py-3">
+          <!-- Results will be displayed here -->
         </div>
       </div>
       <div>
@@ -194,5 +233,81 @@
         <div class="h-5 bg-slate-50"></div>
       </div>
     </div>
+    <script>
+      const calculateButton = document.getElementById('calculate-button');
+      const resultsContainer = document.getElementById('results-container');
+
+      calculateButton.addEventListener('click', () => {
+        // --- Input Gathering ---
+        const businessType = document.getElementById('business-type').value;
+        const treatmentRooms = parseInt(document.getElementById('treatment-rooms').value) || 0;
+        const seasonality = document.getElementById('seasonality').value;
+        const location = document.getElementById('location').value;
+        const staffRatio = parseFloat(document.getElementById('staff-ratio').value) || 0;
+        const staffExperience = document.getElementById('staff-experience').value;
+        const clientSophistication = document.getElementById('client-sophistication').value;
+        const localCompetition = document.getElementById('local-competition').value;
+
+        // --- Base Values ---
+        let treatmentCapacity = 100; // Base capacity
+        let avgTreatmentPrice = 100; // Base price
+        let recommendedPack = 'Starter';
+        let productMix = { 'Product A': 50, 'Product B': 30, 'Product C': 20 };
+
+        // --- Logic Implementation ---
+
+        // 1. Seasonality
+        if (seasonality === 'High Season' && location === 'Coastal Area') {
+          treatmentCapacity *= 1.4; // 40% increase in summer
+        }
+        if (seasonality === 'Holiday Peak' && (location === 'Madrid' || location === 'Barcelona')) {
+          treatmentCapacity *= 1.2; // 20% holiday increase
+        }
+
+        // 2. Staff Efficiency
+        if (treatmentRooms > 0) {
+            const efficiency = 1.0 + (staffRatio / treatmentRooms) * 0.1;
+            treatmentCapacity *= efficiency;
+        }
+
+
+        // 3. Geographic Nuances
+        if (location === 'Madrid') {
+          avgTreatmentPrice *= 1.2;
+        }
+
+        // 4. Competitive Positioning
+        if (localCompetition === 'High') {
+          recommendedPack = 'Premium';
+        }
+
+        // 5. Business Size Thresholds & Pack recommendation
+        if (treatmentRooms >= 3 && treatmentRooms < 5) {
+            recommendedPack = 'Starter';
+        } else if (treatmentRooms >= 5) {
+            recommendedPack = 'Premium';
+        }
+
+        // Adjust product mix based on pack
+        if (recommendedPack === 'Premium') {
+            productMix = { 'Premium Product A': 60, 'Premium Product B': 40 };
+        }
+
+
+        // --- Display Results ---
+        resultsContainer.innerHTML = `
+          <h3 class="text-[#0d171b] text-lg font-bold leading-tight tracking-[-0.015em] pb-2 pt-4">Calculation Results</h3>
+          <div class="p-4 border border-[#cfdfe7] rounded-xl">
+            <p><strong>Recommended Pack:</strong> ${recommendedPack}</p>
+            <p><strong>Adjusted Treatment Capacity:</strong> ${treatmentCapacity.toFixed(2)}</p>
+            <p><strong>Adjusted Average Treatment Price:</strong> ${avgTreatmentPrice.toFixed(2)}</p>
+            <h4 class="font-bold mt-2">Product Mix:</h4>
+            <ul>
+              ${Object.entries(productMix).map(([product, percentage]) => `<li>${product}: ${percentage}%</li>`).join('')}
+            </ul>
+          </div>
+        `;
+      });
+    </script>
   </body>
 </html>
