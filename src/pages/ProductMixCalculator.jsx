@@ -4,14 +4,14 @@ function ProductMixCalculator() {
   // State for form inputs
   const [businessType, setBusinessType] = useState('');
   const [treatmentRooms, setTreatmentRooms] = useState(0);
-  const [monthlyTreatments, setMonthlyTreatments] = useState(0);
-  const [discount, setDiscount] = useState(0);
-  const [percentageTreatments, setPercentageTreatments] = useState(0);
+  const [_monthlyTreatments, _setMonthlyTreatments] = useState(0);
+  const [_discount, _setDiscount] = useState(0);
+  const [_percentageTreatments, _setPercentageTreatments] = useState(0);
   const [seasonality, setSeasonality] = useState('');
   const [location, setLocation] = useState('');
   const [staffRatio, setStaffRatio] = useState(0);
   const [staffExperience, setStaffExperience] = useState('');
-  const [clientSophistication, setClientSophistication] = useState('');
+  const [_clientSophistication, _setClientSophistication] = useState('');
   const [localCompetition, setLocalCompetition] = useState('');
 
   // State for results
