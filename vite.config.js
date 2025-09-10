@@ -16,6 +16,6 @@ export default defineConfig({
   },
 
 // https://vite.dev/config/
-export default defineConfig({
+export: defineConfig({
   plugins: [react()],
 }));
