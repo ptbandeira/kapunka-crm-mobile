@@ -7,11 +7,15 @@ function ProductMixCalculator() {
   const [monthlyTreatments, setMonthlyTreatments] = useState(0);
   const [discount, setDiscount] = useState(0);
   const [percentageTreatments, setPercentageTreatments] = useState(0);
+  const [_monthlyTreatments, _setMonthlyTreatments] = useState(0);
+  const [_discount, _setDiscount] = useState(0);
+  const [_percentageTreatments, _setPercentageTreatments] = useState(0);
   const [seasonality, setSeasonality] = useState('');
   const [location, setLocation] = useState('');
   const [staffRatio, setStaffRatio] = useState(0);
   const [staffExperience, setStaffExperience] = useState('');
   const [clientSophistication, setClientSophistication] = useState('');
+  const [_clientSophistication, _setClientSophistication] = useState('');
   const [localCompetition, setLocalCompetition] = useState('');
 
   // State for results
@@ -42,6 +46,11 @@ function ProductMixCalculator() {
 
     // 3. Apply other adjustments
     // Seasonality
+    let recommendedPack = 'Starter';
+    let productMix = { 'Product A': 50, 'Product B': 30, 'Product C': 20 };
+
+    // --- Logic Implementation ---
+    // 1. Seasonality
     if (seasonality === 'High Season' && location === 'Coastal Area') {
       treatmentCapacity *= 1.4;
     }
@@ -64,6 +73,31 @@ function ProductMixCalculator() {
       treatmentCapacity: treatmentCapacity.toFixed(2),
       avgTreatmentPrice: avgTreatmentPrice.toFixed(2),
       productMix: finalProductMix,
+    // 2. Staff Efficiency
+    if (treatmentRooms > 0) {
+      const efficiency = 1.0 + (staffRatio / treatmentRooms) * 0.1;
+      treatmentCapacity *= efficiency;
+    }
+    // 3. Geographic Nuances
+    if (location === 'Madrid') {
+      avgTreatmentPrice *= 1.2;
+    }
+    // 4. Competitive Positioning & Business Size
+    if (localCompetition === 'High' || treatmentRooms >= 5) {
+      recommendedPack = 'Premium';
+    } else if (treatmentRooms >= 3) {
+      recommendedPack = 'Starter';
+    }
+    // Adjust product mix based on pack
+    if (recommendedPack === 'Premium') {
+      productMix = { 'Premium Product A': 60, 'Premium Product B': 40 };
+    }
+
+    setResults({
+      recommendedPack,
+      treatmentCapacity: treatmentCapacity.toFixed(2),
+      avgTreatmentPrice: avgTreatmentPrice.toFixed(2),
+      productMix,
     });
   };
 

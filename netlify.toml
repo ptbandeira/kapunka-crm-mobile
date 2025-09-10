@@ -4,3 +4,5 @@
 
 [functions]
   directory = "netlify/functions"
+  command = "npx tailwindcss -i ./src/input.css -o ./src/index.css && vite build"
+  publish = "dist"
