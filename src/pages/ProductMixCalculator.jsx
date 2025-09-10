@@ -4,6 +4,9 @@ function ProductMixCalculator() {
   // State for form inputs
   const [businessType, setBusinessType] = useState('');
   const [treatmentRooms, setTreatmentRooms] = useState(0);
+  const [monthlyTreatments, setMonthlyTreatments] = useState(0);
+  const [discount, setDiscount] = useState(0);
+  const [percentageTreatments, setPercentageTreatments] = useState(0);
   const [_monthlyTreatments, _setMonthlyTreatments] = useState(0);
   const [_discount, _setDiscount] = useState(0);
   const [_percentageTreatments, _setPercentageTreatments] = useState(0);
@@ -11,6 +14,7 @@ function ProductMixCalculator() {
   const [location, setLocation] = useState('');
   const [staffRatio, setStaffRatio] = useState(0);
   const [staffExperience, setStaffExperience] = useState('');
+  const [clientSophistication, setClientSophistication] = useState('');
   const [_clientSophistication, _setClientSophistication] = useState('');
   const [localCompetition, setLocalCompetition] = useState('');
 
@@ -21,6 +25,27 @@ function ProductMixCalculator() {
     // --- Base Values ---
     let treatmentCapacity = 100; // Base capacity
     let avgTreatmentPrice = 100; // Base price
+
+    // --- Refactored Logic ---
+    let finalRecommendedPack = 'Starter';
+    let finalProductMix = {};
+
+    // 1. Determine the pack type first
+    if (localCompetition === 'High' || treatmentRooms >= 5) {
+      finalRecommendedPack = 'Premium';
+    } else if (treatmentRooms >= 3) {
+      finalRecommendedPack = 'Starter';
+    }
+
+    // 2. Set the product mix based on the determined pack
+    if (finalRecommendedPack === 'Premium') {
+      finalProductMix = { 'Premium Product A': 60, 'Premium Product B': 40 };
+    } else { // Default to Starter pack
+      finalProductMix = { 'Product A': 50, 'Product B': 30, 'Product C': 20 };
+    }
+
+    // 3. Apply other adjustments
+    // Seasonality
     let recommendedPack = 'Starter';
     let productMix = { 'Product A': 50, 'Product B': 30, 'Product C': 20 };
 
@@ -32,6 +57,22 @@ function ProductMixCalculator() {
     if (seasonality === 'Holiday Peak' && (location === 'Madrid' || location === 'Barcelona')) {
       treatmentCapacity *= 1.2;
     }
+    // Staff Efficiency
+    if (treatmentRooms > 0 && staffRatio > 0) {
+      const efficiency = 1.0 + (staffRatio / treatmentRooms) * 0.1;
+      treatmentCapacity *= efficiency;
+    }
+    // Geographic Nuances
+    if (location === 'Madrid') {
+      avgTreatmentPrice *= 1.2;
+    }
+
+    // 4. Set the final results state
+    setResults({
+      recommendedPack: finalRecommendedPack,
+      treatmentCapacity: treatmentCapacity.toFixed(2),
+      avgTreatmentPrice: avgTreatmentPrice.toFixed(2),
+      productMix: finalProductMix,
     // 2. Staff Efficiency
     if (treatmentRooms > 0) {
       const efficiency = 1.0 + (staffRatio / treatmentRooms) * 0.1;
