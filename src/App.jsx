@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { clients as mockClients } from './data/clients';
@@ -27,12 +28,17 @@ function App() {
   };
 
 =======
+=======
+>>>>>>> ed3968d (fix: Rework build process to use Tailwind CLI directly)
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import HomeDashboard from './pages/HomeDashboard';
 import ProductMixCalculator from './pages/ProductMixCalculator';
 
 function App() {
+<<<<<<< HEAD
 >>>>>>> a23fc9c (fix: Ensure product mix is displayed in calculator results)
+=======
+>>>>>>> ed3968d (fix: Rework build process to use Tailwind CLI directly)
   return (
     <Router>
       <div className="bg-slate-50 min-h-screen font-sans">
@@ -43,11 +49,14 @@ function App() {
             </li>
             <li>
 <<<<<<< HEAD
+<<<<<<< HEAD
               <Link to="/clients">Clients</Link>
             </li>
             <li>
 =======
 >>>>>>> a23fc9c (fix: Ensure product mix is displayed in calculator results)
+=======
+>>>>>>> ed3968d (fix: Rework build process to use Tailwind CLI directly)
               <Link to="/calculator">Calculator</Link>
             </li>
           </ul>
@@ -58,12 +67,15 @@ function App() {
             <Route path="/" element={<HomeDashboard />} />
             <Route path="/calculator" element={<ProductMixCalculator />} />
 <<<<<<< HEAD
+<<<<<<< HEAD
             <Route path="/clients" element={<ClientListPage clients={clients} />} />
             <Route path="/client/:id" element={<ClientDetailPage clients={clients} />} />
             <Route path="/clients/new" element={<AddNewClientPage onAddClient={handleAddNewClient} />} />
             <Route path="/client/:id/edit" element={<EditClientPage clients={clients} onUpdateClient={handleUpdateClient} />} />
 =======
 >>>>>>> a23fc9c (fix: Ensure product mix is displayed in calculator results)
+=======
+>>>>>>> ed3968d (fix: Rework build process to use Tailwind CLI directly)
           </Routes>
         </main>
       </div>

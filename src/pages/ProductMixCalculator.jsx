@@ -21,6 +21,7 @@ function ProductMixCalculator() {
     // --- Base Values ---
     let treatmentCapacity = 100; // Base capacity
     let avgTreatmentPrice = 100; // Base price
+<<<<<<< HEAD
 
     // --- Refactored Logic ---
     let finalRecommendedPack = 'Starter';
@@ -42,12 +43,20 @@ function ProductMixCalculator() {
 
     // 3. Apply other adjustments
     // Seasonality
+=======
+    let recommendedPack = 'Starter';
+    let productMix = { 'Product A': 50, 'Product B': 30, 'Product C': 20 };
+
+    // --- Logic Implementation ---
+    // 1. Seasonality
+>>>>>>> ed3968d (fix: Rework build process to use Tailwind CLI directly)
     if (seasonality === 'High Season' && location === 'Coastal Area') {
       treatmentCapacity *= 1.4;
     }
     if (seasonality === 'Holiday Peak' && (location === 'Madrid' || location === 'Barcelona')) {
       treatmentCapacity *= 1.2;
     }
+<<<<<<< HEAD
     // Staff Efficiency
     if (treatmentRooms > 0 && staffRatio > 0) {
       const efficiency = 1.0 + (staffRatio / treatmentRooms) * 0.1;
@@ -64,6 +73,33 @@ function ProductMixCalculator() {
       treatmentCapacity: treatmentCapacity.toFixed(2),
       avgTreatmentPrice: avgTreatmentPrice.toFixed(2),
       productMix: finalProductMix,
+=======
+    // 2. Staff Efficiency
+    if (treatmentRooms > 0) {
+      const efficiency = 1.0 + (staffRatio / treatmentRooms) * 0.1;
+      treatmentCapacity *= efficiency;
+    }
+    // 3. Geographic Nuances
+    if (location === 'Madrid') {
+      avgTreatmentPrice *= 1.2;
+    }
+    // 4. Competitive Positioning & Business Size
+    if (localCompetition === 'High' || treatmentRooms >= 5) {
+      recommendedPack = 'Premium';
+    } else if (treatmentRooms >= 3) {
+      recommendedPack = 'Starter';
+    }
+    // Adjust product mix based on pack
+    if (recommendedPack === 'Premium') {
+      productMix = { 'Premium Product A': 60, 'Premium Product B': 40 };
+    }
+
+    setResults({
+      recommendedPack,
+      treatmentCapacity: treatmentCapacity.toFixed(2),
+      avgTreatmentPrice: avgTreatmentPrice.toFixed(2),
+      productMix,
+>>>>>>> ed3968d (fix: Rework build process to use Tailwind CLI directly)
     });
   };
 
