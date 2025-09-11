@@ -7,9 +7,9 @@ function AddNewClientPage({ onAddClient }) { // Receive onAddClient as a prop
   const [businessType, setBusinessType] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
-  const [address, setAddress] = useState('');
-  const [yearsInBusiness, setYearsInBusiness] = useState('');
-  const [notes, setNotes] = useState('');
+  const [address, _setAddress] = useState('');
+  const [yearsInBusiness, _setYearsInBusiness] = useState('');
+  const [notes, _setNotes] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
