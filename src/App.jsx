@@ -1,3 +1,4 @@
+// src/App.jsx
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomeDashboard from './pages/HomeDashboard';
@@ -25,33 +26,27 @@ function App() {
   const [products, setProducts] = useState(initialProducts);
 
   const handleAddClient = (newClient) => {
-    setClients((prevClients) => [...prevClients, { ...newClient, id: Date.now().toString() }]);
+    setClients((prev) => [...prev, { ...newClient, id: Date.now().toString() }]);
   };
 
   const handleUpdateClient = (updatedClient) => {
-    setClients((prevClients) =>
-      prevClients.map((client) => (client.id === updatedClient.id ? updatedClient : client))
-    );
+    setClients((prev) => prev.map((c) => (c.id === updatedClient.id ? updatedClient : c)));
   };
 
   const handleAddLead = (newLead) => {
-    setLeads((prevLeads) => [...prevLeads, { ...newLead, id: `lead${Date.now()}` }]);
+    setLeads((prev) => [...prev, { ...newLead, id: `lead${Date.now()}` }]);
   };
 
   const handleUpdateLead = (updatedLead) => {
-    setLeads((prevLeads) =>
-      prevLeads.map((lead) => (lead.id === updatedLead.id ? updatedLead : lead))
-    );
+    setLeads((prev) => prev.map((l) => (l.id === updatedLead.id ? updatedLead : l)));
   };
 
   const handleAddProduct = (newProduct) => {
-    setProducts((prevProducts) => [...prevProducts, { ...newProduct, id: `prod${Date.now()}` }]);
+    setProducts((prev) => [...prev, { ...newProduct, id: `prod${Date.now()}` }]);
   };
 
   const handleUpdateProduct = (updatedProduct) => {
-    setProducts((prevProducts) =>
-      prevProducts.map((product) => (product.id === updatedProduct.id ? updatedProduct : product))
-    );
+    setProducts((prev) => prev.map((p) => (p.id === updatedProduct.id ? updatedProduct : p)));
   };
 
   return (
@@ -61,18 +56,22 @@ function App() {
           <Routes>
             <Route path="/" element={<HomeDashboard />} />
             <Route path="/calculator" element={<ProductMixCalculator />} />
+
             <Route path="/clients" element={<ClientListPage clients={clients} />} />
             <Route path="/clients/new" element={<AddNewClientPage onAddClient={handleAddClient} />} />
             <Route path="/client/:id" element={<ClientDetailPage clients={clients} />} />
             <Route path="/client/:id/edit" element={<EditClientPage clients={clients} onUpdateClient={handleUpdateClient} />} />
+
             <Route path="/leads" element={<LeadListPage leads={leads} />} />
             <Route path="/leads/new" element={<AddNewLeadPage onAddLead={handleAddLead} />} />
             <Route path="/lead/:id" element={<LeadDetailPage leads={leads} />} />
             <Route path="/lead/:id/edit" element={<EditLeadPage leads={leads} onUpdateLead={handleUpdateLead} />} />
+
             <Route path="/products" element={<ProductListPage products={products} />} />
             <Route path="/products/new" element={<AddNewProductPage onAddProduct={handleAddProduct} />} />
             <Route path="/product/:id" element={<ProductDetailPage products={products} />} />
             <Route path="/product/:id/edit" element={<EditProductPage products={products} onUpdateProduct={handleUpdateProduct} />} />
+
             <Route path="/results" element={<div>Results Page</div>} />
             <Route path="/sales" element={<div>Sales Page</div>} />
           </Routes>
