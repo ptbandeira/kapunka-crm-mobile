@@ -9,17 +9,12 @@ function ClientListPage({ clients }) {
   );
 
   return (
-    <div className="p-4">
-      <div className="flex justify-between items-center mb-4">
-        <h1 className="text-2xl font-bold">Clients</h1>
-        <Link to="/clients/new" className="text-3xl font-bold text-gray-700">+</Link>
-      </div>
-
+    <div>
       <div className="relative mb-4">
         <input
           type="text"
           placeholder="Search clients"
-          className="w-full p-2 pl-10 border rounded-lg"
+          className="w-full p-3 pl-10 bg-white border-none rounded-full shadow-sm"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
@@ -28,7 +23,7 @@ function ClientListPage({ clients }) {
 
       <div>
         {filteredClients.map(client => (
-          <Link to={`/client/${client.id}`} key={client.id} className="flex items-center p-4 mb-2 bg-white rounded-lg shadow">
+          <Link to={`/client/${client.id}`} key={client.id} className="flex items-center p-4 mb-2 bg-transparent">
             <img src={`https://i.pravatar.cc/150?u=${client.id}`} alt={client.name} className="w-12 h-12 rounded-full mr-4" />
             <div>
               <p className="font-bold text-lg">{client.name}</p>

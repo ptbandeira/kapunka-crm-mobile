@@ -1,7 +1,8 @@
 // src/App.jsx
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import HomeDashboard from './pages/HomeDashboard';
+import PlusIcon from './components/icons/PlusIcon';
 import ProductMixCalculator from './pages/ProductMixCalculator';
 import ClientListPage from './pages/ClientListPage';
 import AddNewClientPage from './pages/AddNewClientPage';
@@ -15,15 +16,37 @@ import ProductListPage from './pages/ProductListPage';
 import AddNewProductPage from './pages/AddNewProductPage';
 import ProductDetailPage from './pages/ProductDetailPage';
 import EditProductPage from './pages/EditProductPage';
+import SalesPage from './pages/SalesPage';
 import { clients as initialClients } from './data/clients';
 import { leads as initialLeads } from './data/leads';
 import { products as initialProducts } from './data/products';
-import BottomNav from './components/BottomNav';
+import MainLayout from './components/MainLayout';
+
+const RouteWithLayout = ({ title, action, children }) => (
+  <MainLayout title={title} action={action}>{children}</MainLayout>
+);
 
 function App() {
-  const [clients, setClients] = useState(initialClients);
-  const [leads, setLeads] = useState(initialLeads);
-  const [products, setProducts] = useState(initialProducts);
+  const getInitialState = (key, initialData) => {
+    const savedData = localStorage.getItem(key);
+    return savedData ? JSON.parse(savedData) : initialData;
+  };
+
+  const [clients, setClients] = useState(() => getInitialState('clients', initialClients));
+  const [leads, setLeads] = useState(() => getInitialState('leads', initialLeads));
+  const [products, setProducts] = useState(() => getInitialState('products', initialProducts));
+
+  useEffect(() => {
+    localStorage.setItem('clients', JSON.stringify(clients));
+  }, [clients]);
+
+  useEffect(() => {
+    localStorage.setItem('leads', JSON.stringify(leads));
+  }, [leads]);
+
+  useEffect(() => {
+    localStorage.setItem('products', JSON.stringify(products));
+  }, [products]);
 
   const handleAddClient = (newClient) => {
     setClients((prev) => [...prev, { ...newClient, id: Date.now().toString() }]);
@@ -51,33 +74,28 @@ function App() {
 
   return (
     <Router>
-      <div className="bg-slate-50 min-h-screen font-sans pb-16">
-        <main className="p-4">
-          <Routes>
-            <Route path="/" element={<HomeDashboard />} />
-            <Route path="/calculator" element={<ProductMixCalculator />} />
+      <Routes>
+        <Route path="/" element={<RouteWithLayout title="Dashboard"><HomeDashboard /></RouteWithLayout>} />
+        <Route path="/calculator" element={<RouteWithLayout title="Calculator"><ProductMixCalculator /></RouteWithLayout>} />
 
-            <Route path="/clients" element={<ClientListPage clients={clients} />} />
-            <Route path="/clients/new" element={<AddNewClientPage onAddClient={handleAddClient} />} />
-            <Route path="/client/:id" element={<ClientDetailPage clients={clients} />} />
-            <Route path="/client/:id/edit" element={<EditClientPage clients={clients} onUpdateClient={handleUpdateClient} />} />
+        <Route path="/clients" element={<RouteWithLayout title="Clients" action={<Link to="/clients/new"><PlusIcon /></Link>}><ClientListPage clients={clients} /></RouteWithLayout>} />
+        <Route path="/clients/new" element={<RouteWithLayout title="Add Client"><AddNewClientPage onAddClient={handleAddClient} /></RouteWithLayout>} />
+        <Route path="/client/:id" element={<RouteWithLayout title="Client Details"><ClientDetailPage clients={clients} /></RouteWithLayout>} />
+        <Route path="/client/:id/edit" element={<RouteWithLayout title="Edit Client"><EditClientPage clients={clients} onUpdateClient={handleUpdateClient} /></RouteWithLayout>} />
 
-            <Route path="/leads" element={<LeadListPage leads={leads} />} />
-            <Route path="/leads/new" element={<AddNewLeadPage onAddLead={handleAddLead} />} />
-            <Route path="/lead/:id" element={<LeadDetailPage leads={leads} />} />
-            <Route path="/lead/:id/edit" element={<EditLeadPage leads={leads} onUpdateLead={handleUpdateLead} />} />
+        <Route path="/leads" element={<RouteWithLayout title="Leads" action={<Link to="/leads/new"><PlusIcon /></Link>}><LeadListPage leads={leads} /></RouteWithLayout>} />
+        <Route path="/leads/new" element={<RouteWithLayout title="Add Lead"><AddNewLeadPage onAddLead={handleAddLead} /></RouteWithLayout>} />
+        <Route path="/lead/:id" element={<RouteWithLayout title="Lead Details"><LeadDetailPage leads={leads} /></RouteWithLayout>} />
+        <Route path="/lead/:id/edit" element={<RouteWithLayout title="Edit Lead"><EditLeadPage leads={leads} onUpdateLead={handleUpdateLead} /></RouteWithLayout>} />
 
-            <Route path="/products" element={<ProductListPage products={products} />} />
-            <Route path="/products/new" element={<AddNewProductPage onAddProduct={handleAddProduct} />} />
-            <Route path="/product/:id" element={<ProductDetailPage products={products} />} />
-            <Route path="/product/:id/edit" element={<EditProductPage products={products} onUpdateProduct={handleUpdateProduct} />} />
+        <Route path="/products" element={<RouteWithLayout title="Products"><ProductListPage products={products} /></RouteWithLayout>} />
+        <Route path="/products/new" element={<RouteWithLayout title="Add Product"><AddNewProductPage onAddProduct={handleAddProduct} /></RouteWithLayout>} />
+        <Route path="/product/:id" element={<RouteWithLayout title="Product Details"><ProductDetailPage products={products} /></RouteWithLayout>} />
+        <Route path="/product/:id/edit" element={<RouteWithLayout title="Edit Product"><EditProductPage products={products} onUpdateProduct={handleUpdateProduct} /></RouteWithLayout>} />
 
-            <Route path="/results" element={<div>Results Page</div>} />
-            <Route path="/sales" element={<div>Sales Page</div>} />
-          </Routes>
-        </main>
-        <BottomNav />
-      </div>
+        <Route path="/results" element={<RouteWithLayout title="Results"><div>Results Page</div></RouteWithLayout>} />
+        <Route path="/sales" element={<RouteWithLayout title="Sales"><SalesPage /></RouteWithLayout>} />
+      </Routes>
     </Router>
   );
 }
