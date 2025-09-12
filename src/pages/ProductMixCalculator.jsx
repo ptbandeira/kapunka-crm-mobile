@@ -147,17 +147,37 @@ function ProductMixCalculator() {
       {/* Results Section */}
       {results && (
         <div className="px-4 py-3">
-          <h3 className="text-[#0d171b] text-lg font-bold leading-tight">Calculation Results</h3>
-          <div className="p-4 mt-2 border border-[#cfdfe7] rounded-xl">
-            <p><strong>Recommended Pack:</strong> {results.recommendedPack}</p>
-            <p><strong>Adjusted Treatment Capacity:</strong> {results.treatmentCapacity}</p>
-            <p><strong>Adjusted Average Treatment Price:</strong> {results.avgTreatmentPrice}</p>
-            <h4 className="font-bold mt-2">Product Mix:</h4>
+          <h3 className="text-[#0d171b] text-lg font-bold leading-tight tracking-[-0.015em] pb-2">Recommended Mix</h3>
+          <div className="rounded-xl p-6 bg-[#e7eff3]">
+            <p className="text-5xl font-bold text-center">100%</p>
+            <p className="text-sm text-center text-gray-500">Current +5%</p>
+            <div className="mt-4 space-y-2">
+              {Object.entries(results.productMix).map(([product, percentage]) => (
+                <div key={product}>
+                  <p className="text-sm font-medium">{product}</p>
+                  <div className="w-full bg-gray-200 rounded-full h-2.5">
+                    <div className="bg-blue-600 h-2.5 rounded-full" style={{ width: `${percentage}%` }}></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <h3 className="text-[#0d171b] text-lg font-bold leading-tight tracking-[-0.015em] pt-4 pb-2">Details</h3>
+          <div className="rounded-xl p-6 bg-[#e7eff3]">
             <ul>
               {Object.entries(results.productMix).map(([product, percentage]) => (
-                <li key={product}>{product}: {percentage}%</li>
+                <li key={product} className="flex justify-between py-2 border-b">
+                  <span>{product}</span>
+                  <span>{percentage}%</span>
+                </li>
               ))}
             </ul>
+          </div>
+
+          <div className="flex gap-4 mt-4">
+            <button className="flex-1 px-4 py-2 text-white bg-blue-500 rounded-xl">Save</button>
+            <button className="flex-1 px-4 py-2 bg-gray-200 rounded-xl">Share</button>
           </div>
         </div>
       )}
