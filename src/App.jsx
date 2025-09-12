@@ -45,14 +45,17 @@ function App() {
           <Routes>
             <Route path="/" element={<HomeDashboard />} />
             <Route path="/calculator" element={<ProductMixCalculator />} />
+
             <Route path="/clients" element={<ClientListPage clients={clients} />} />
             <Route path="/clients/new" element={<AddNewClientPage onAddClient={handleAddClient} />} />
             <Route path="/client/:id" element={<ClientDetailPage clients={clients} />} />
             <Route path="/client/:id/edit" element={<EditClientPage clients={clients} onUpdateClient={handleUpdateClient} />} />
+
             <Route path="/leads" element={<LeadListPage leads={leads} />} />
             <Route path="/leads/new" element={<AddNewLeadPage onAddLead={handleAddLead} />} />
             <Route path="/lead/:id" element={<LeadDetailPage leads={leads} />} />
             <Route path="/lead/:id/edit" element={<EditLeadPage leads={leads} onUpdateLead={handleUpdateLead} />} />
+
             <Route path="/results" element={<div>Results Page</div>} />
           </Routes>
         </main>
