@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function ProductMixCalculator() {
+function ProductMixCalculator({ onSave }) {
   // State for form inputs
   const [businessType, setBusinessType] = useState('');
   const [treatmentRooms, setTreatmentRooms] = useState(0);
@@ -176,7 +176,7 @@ function ProductMixCalculator() {
           </div>
 
           <div className="flex gap-4 mt-4">
-            <button className="flex-1 px-4 py-2 text-white bg-blue-500 rounded-xl">Save</button>
+            <button onClick={() => onSave(results)} className="flex-1 px-4 py-2 text-white bg-blue-500 rounded-xl">Save</button>
             <button className="flex-1 px-4 py-2 bg-gray-200 rounded-xl">Share</button>
           </div>
         </div>

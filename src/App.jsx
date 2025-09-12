@@ -17,6 +17,7 @@ import AddNewProductPage from './pages/AddNewProductPage';
 import ProductDetailPage from './pages/ProductDetailPage';
 import EditProductPage from './pages/EditProductPage';
 import SalesPage from './pages/SalesPage';
+import ResultsPage from './pages/ResultsPage';
 import { clients as initialClients } from './data/clients';
 import { leads as initialLeads } from './data/leads';
 import { products as initialProducts } from './data/products';
@@ -35,6 +36,7 @@ function App() {
   const [clients, setClients] = useState(() => getInitialState('clients', initialClients));
   const [leads, setLeads] = useState(() => getInitialState('leads', initialLeads));
   const [products, setProducts] = useState(() => getInitialState('products', initialProducts));
+  const [savedResults, setSavedResults] = useState(() => getInitialState('savedResults', []));
 
   useEffect(() => {
     localStorage.setItem('clients', JSON.stringify(clients));
@@ -47,6 +49,14 @@ function App() {
   useEffect(() => {
     localStorage.setItem('products', JSON.stringify(products));
   }, [products]);
+
+  useEffect(() => {
+    localStorage.setItem('savedResults', JSON.stringify(savedResults));
+  }, [savedResults]);
+
+  const handleSaveResult = (result) => {
+    setSavedResults((prev) => [...prev, { ...result, id: `result${Date.now()}`, savedAt: new Date().toISOString() }]);
+  };
 
   const handleAddClient = (newClient) => {
     setClients((prev) => [...prev, { ...newClient, id: Date.now().toString() }]);
@@ -76,7 +86,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<RouteWithLayout title="Dashboard"><HomeDashboard /></RouteWithLayout>} />
-        <Route path="/calculator" element={<RouteWithLayout title="Calculator"><ProductMixCalculator /></RouteWithLayout>} />
+        <Route path="/calculator" element={<RouteWithLayout title="Calculator"><ProductMixCalculator onSave={handleSaveResult} /></RouteWithLayout>} />
 
         <Route path="/clients" element={<RouteWithLayout title="Clients" action={<Link to="/clients/new"><PlusIcon /></Link>}><ClientListPage clients={clients} /></RouteWithLayout>} />
         <Route path="/clients/new" element={<RouteWithLayout title="Add Client"><AddNewClientPage onAddClient={handleAddClient} /></RouteWithLayout>} />
@@ -93,7 +103,7 @@ function App() {
         <Route path="/product/:id" element={<RouteWithLayout title="Product Details"><ProductDetailPage products={products} /></RouteWithLayout>} />
         <Route path="/product/:id/edit" element={<RouteWithLayout title="Edit Product"><EditProductPage products={products} onUpdateProduct={handleUpdateProduct} /></RouteWithLayout>} />
 
-        <Route path="/results" element={<RouteWithLayout title="Results"><div>Results Page</div></RouteWithLayout>} />
+        <Route path="/results" element={<RouteWithLayout title="Results"><ResultsPage results={savedResults} /></RouteWithLayout>} />
         <Route path="/sales" element={<RouteWithLayout title="Sales"><SalesPage /></RouteWithLayout>} />
       </Routes>
     </Router>
