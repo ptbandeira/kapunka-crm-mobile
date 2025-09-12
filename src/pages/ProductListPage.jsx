@@ -1,24 +1,24 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-function ClientListPage({ clients }) {
+function ProductListPage({ products }) {
   const [searchTerm, setSearchTerm] = useState('');
 
-  const filteredClients = clients.filter(client =>
-    client.name.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredProducts = products.filter(product =>
+    product.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
     <div className="p-4">
       <div className="flex justify-between items-center mb-4">
-        <h1 className="text-2xl font-bold">Clients</h1>
-        <Link to="/clients/new" className="text-3xl font-bold text-gray-700">+</Link>
+        <h1 className="text-2xl font-bold">Products</h1>
+        <Link to="/products/new" className="text-3xl font-bold text-gray-700">+</Link>
       </div>
 
       <div className="relative mb-4">
         <input
           type="text"
-          placeholder="Search clients"
+          placeholder="Search products"
           className="w-full p-2 pl-10 border rounded-lg"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
@@ -27,12 +27,12 @@ function ClientListPage({ clients }) {
       </div>
 
       <div>
-        {filteredClients.map(client => (
-          <Link to={`/client/${client.id}`} key={client.id} className="flex items-center p-4 mb-2 bg-white rounded-lg shadow">
-            <img src={`https://i.pravatar.cc/150?u=${client.id}`} alt={client.name} className="w-12 h-12 rounded-full mr-4" />
+        {filteredProducts.map(product => (
+          <Link to={`/product/${product.id}`} key={product.id} className="flex items-center p-4 mb-2 bg-white rounded-lg shadow">
+            <img src={product.imageUrl} alt={product.name} className="w-14 h-14 rounded-lg mr-4" />
             <div>
-              <p className="font-bold text-lg">{client.name}</p>
-              <p className="text-gray-500">{client.businessType}</p>
+              <p className="font-bold text-lg">{product.name}</p>
+              <p className="text-gray-500">{product.category}</p>
             </div>
           </Link>
         ))}
@@ -41,4 +41,4 @@ function ClientListPage({ clients }) {
   );
 }
 
-export default ClientListPage;
+export default ProductListPage;
